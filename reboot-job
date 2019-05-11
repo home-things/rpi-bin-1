@@ -1,0 +1,7 @@
+#!/bin/sh
+# @reboot
+#shairport -a RaspberryPi& # apple airplay
+node /var/www/index.js& # remote light
+node /home/pi/HAP-NodeJS/BridgedCore.js& # apple light server
+node ~/tg-bot& # mxtnr_bot
+echo $! > ~/tg-bot/pid

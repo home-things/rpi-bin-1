@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [[ ! $(expr length "$(cat last-tracks.list )") == 0 ]]; then mv last-tracks.list prev-tracks.list; else echo prev last is empty; fi
+
+while : ; do
+	echo downloading track urls...
+	tracks="$(node index.js | grep -v '%D0%97%D0%9E%D0%96' | grep -v 'Dj%20List' | grep -v '%D0%9F%D1%80%D0%B8%D0%B7%D0%BC%D0%B0')" # w/o: ЗОЖ, DjList, Призма
+	echo check result...
+	echo "$tracks"
+	if [[ ! $(expr length "$tracks") == 0 ]]; then echo "$tracks" > last-tracks.list; download=; else echo retry download; download=1; fi
+	if [[ ! "$download" ]]; then break; fi
+done
+
+echo playing...
+echo "$tracks" | mplayer -playlist -

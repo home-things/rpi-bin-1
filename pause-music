@@ -1,0 +1,3 @@
+#!/bin/bash
+pids=$(ps aux | grep mplayer | grep -v grep | cut -c10-15)
+[[ "$pids" ]] && cat "$pids" | while read pid; do kill -TSTP $pid || :; done || (echo there are no mplayers; exit 1)

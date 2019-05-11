@@ -1,0 +1,4 @@
+#!/bin/sh
+to=$1
+msg=$2
+(echo "get_self"; sleep 2; echo "msg $to $msg"; sleep 2;echo "safe_quit") | telegram-cli -DWR -l0 >/dev/null

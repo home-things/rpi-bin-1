@@ -1,0 +1,7 @@
+#!/usr/bin/expect -f
+spawn sshpass -p mtsoao ssh mgts@192.168.1.254
+match_max 10000
+expect "view*"
+send -- "traceroute \; /bin/sh\r"
+send -- "cat /var/networkmap/data.xml\r"
+send -- "\r"

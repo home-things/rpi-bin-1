@@ -1,0 +1,3 @@
+#!/bin/sh
+state=$1
+/usr/local/bin/gpio write 6 $state # gpio 25

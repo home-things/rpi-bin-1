@@ -1,0 +1,7 @@
+table="$(curl --digest --user 'admin:lun#Din0' http://192.168.1.254/index.htm 2>/dev/null \
+| grep 'var device_array' | sed -r "s/\),new device\(/\n/g" )"
+echo "{"
+echo "\"lenya\": $(echo "$table" | grep -i Redmi4-Redmi | head -n1 | cut -d, -f4)," # 78:02:F8:F7:B0:D6
+echo "\"misha\": $(echo "$table" | grep -i Asus-Mikhail | head -n1 | cut -d, -f4)," # 24:0A:64:94:67:A1
+echo "\"sasha\": $(echo "$table" | grep -i Inv-phone |    head -n1 | cut -d, -f4)"  # 90:FD:61:CA:FA:A3
+echo "}"

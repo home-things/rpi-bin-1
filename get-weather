@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+const fetch = require('node-fetch');
+const iconMap = require('./weather-icon-map');
+fetch('http://api.openweathermap.org/data/2.5/forecast?q=moscow&appid=415b4dfb6a6599b9252de1609e4f5bf0&lang=ru&units=metric')
+.then(res => res.json())
+.then(res => res.list[0])
+.then(next => ({
+	time_delta: (new Date(next.dt_txt + '+00:00') - Date.now()) / (1000 * 60 * 60),
+	rain: next.rain,
+	description: next.weather[0].description,
+	icon: iconMap['wi-owm-day-' + next.weather[0].id], //next.weather[0].icon,
+	temp: next.main.temp,
+}))
+.then(json => console.log(JSON.stringify(json)))
+.catch(e => {console.error(e);process.exit(1); });

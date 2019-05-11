@@ -1,0 +1,7 @@
+{
+	"dependencies": {
+		"throw": "",
+		"isomorphic-fetch": "",
+		"jsdom": ""
+	}
+}

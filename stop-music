@@ -1,0 +1,4 @@
+#!/bin/bash
+pids=$(ps aux | grep mplayer | grep -v grep | cut -c10-15)
+sudo killall mplayer
+[[ "$pids" ]] || (echo 'there are no mplayers; exit 1)

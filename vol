@@ -1,0 +1,9 @@
+#!/bin/bash
+vol=$1
+intent=$2
+cur=$(get-vol)
+if [[ ! "$vol" ]] || [[ "$vol" < "60" ]] || ([[ "$intent" == "louder" ]] && [[ "$cur" > "$vol" ]]) || ([[ "$intent" == "quieter" ]] && [[ "$cur" < "$vol" ]]); then
+	echo vol unchanged
+	exit
+fi
+sudo amixer cset numid=1 -- $vol% >/dev/null 2>&1

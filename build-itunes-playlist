@@ -1,0 +1,3 @@
+#!/bin/bash
+id=$1
+~/bin/megapolisfm-itunes-tracks-uris/index.js $id
